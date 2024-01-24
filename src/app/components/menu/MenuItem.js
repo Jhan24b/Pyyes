@@ -4,7 +4,7 @@ import MenuItemTile from "../menu/MenuItemTile";
 import Image from "next/image";
 
 export default function MenuItem(menuItem) {
-  const { image, name, description, basePrice, sizes, extraIngredientPrices } =
+  const { image, name, description, basePrice, sizes, extraIngredients } =
     menuItem;
   const [selectedSize, setSelectedSize] = useState(sizes?.[0] || null);
   const [selectedExtras, setSelectedExtras] = useState([]);
@@ -12,7 +12,7 @@ export default function MenuItem(menuItem) {
   const { addToCart } = useContext(CartContext);
 
   async function handleAddToCartButtonClick() {
-    const hasOptions = sizes?.length > 0 || extraIngredientPrices?.length > 0;
+    const hasOptions = sizes?.length > 0 || extraIngredients?.length > 0;
     if (hasOptions && !showPopup) {
       setShowPopup(true);
       return;
@@ -89,10 +89,10 @@ export default function MenuItem(menuItem) {
                   ))}
                 </div>
               )}
-              {extraIngredientPrices?.length > 0 && (
+              {extraIngredients?.length > 0 && (
                 <div className="py-2">
                   <h3 className="text-center text-gray-700">Any extras?</h3>
-                  {extraIngredientPrices.map((extraThing) => (
+                  {extraIngredients.map((extraThing) => (
                     <label
                       key={extraThing._id}
                       className="flex items-center gap-2 p-4 border rounded-md mb-1"

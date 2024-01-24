@@ -10,7 +10,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
   );
   const [basePrice, setBasePrice] = useState(menuItem?.basePrice || "");
   const [imageItem, setImageItem] = useState(menuItem?.image || "");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(menuItem?.category || "");
   const [sizes, setSizes] = useState(menuItem?.sizes || []);
   const [extraIngredients, setExtraIngredients] = useState(
     menuItem?.extraIngredients || []
@@ -42,7 +42,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
         }
       >
         <div
-          className="grid gap-2 items-start"
+          className="md:grid gap-2 items-start"
           style={{ gridTemplateColumns: ".3fr .7fr" }}
         >
           <div>

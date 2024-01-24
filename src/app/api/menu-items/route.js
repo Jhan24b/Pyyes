@@ -11,6 +11,7 @@ export async function POST(req){
 export async function PUT(req){
     mongoose.connect(process.env.MONGO_URL);
     const {_id, ...data} = await req.json();
+    console.log("enviamos esto: ", data);
     await MenuItem.findByIdAndUpdate(_id, data);
     return Response.json(true);    
 }

@@ -27,9 +27,14 @@ export default function Hero() {
       <div className="relative">
         <Image
           src={"/pyeManzana.png"}
-          layout="fill"
+          // width={469}
+          // height={353}
           objectFit="contain"
+          layout="fill"
+          // objectFit="cover"
           alt="Pye"
+          priority={true}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px" 
         />
       </div>
     </section>

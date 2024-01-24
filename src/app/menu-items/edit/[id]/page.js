@@ -28,15 +28,16 @@ export default function EditMenuItemPage() {
   async function handleSubmitForm(ev, data) {
     ev.preventDefault();
     data._id = id;
-
     const savingPromise = new Promise(async (resolve, reject) => {
-      const response = await fetch("/api/menu-items", {
-        method: "PUT",
+      const response = await fetch('/api/menu-items', {
+        method: 'PUT',
         body: JSON.stringify(data),
-        headers: { "Content-type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
-      if (response.ok) resolve();
-      else reject();
+      if (response.ok)
+        resolve();
+      else
+        reject();
     });
     await toast.promise(savingPromise, {
       loading: "Updating the dessert...",
