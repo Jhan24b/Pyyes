@@ -8,8 +8,12 @@ import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/libs/mongoConnect";
 import { getServerSession } from "next-auth";
+// import Providers from "next-auth/providers";
 
 export const authOptions = {
+  pages: {
+    signIn: "/login",
+  },
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -29,31 +33,26 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // const res = await fetch("/your/endpoint", {
-        //     method: 'POST',
-        //     body: JSON.stringify(credentials),
-        //     headers: { "Content-Type": "application/json" }
-        // })
-        // const user = await res.json()
-
-        // if (res.ok && user) {
-        //     return user
-        // }
         const email = credentials?.email;
         const password = credentials?.password;
+
         mongoose.connect(process.env.MONGO_URL);
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password);
+
         if (passwordOk) {
           return user;
         }
+
         return null;
       },
     }),
-  ],
+  ],session: {
+    jwt: true, // habilita JWT para la persistencia de la sesión
+  },
 };
 
-export async function isAdmin(){
+export async function isAdmin() {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
   if (!userEmail) {
@@ -69,7 +68,6 @@ export async function isAdmin(){
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-
 
 /////codigo de dawid
 // import clientPromise from "@/libs/mongoConnect";
@@ -131,7 +129,6 @@ export { handler as GET, handler as POST };
 // const handler = NextAuth(authOptions);
 
 // export { isAdmin, authOptions, handler as GET, handler as POST }
-
 
 // ////codigo de gpt
 // import clientPromise from "@/libs/mongoConnect";

@@ -13,13 +13,12 @@ function AuthOptions({ status, userName }) {
     <>
       {status === "authenticated" && (
         <div className="flex items-center gap-4">
-          <Link href={"/profile"} className="whitespace-nowrap sm:grow">
+          <Link href={"/profile"} className="whitespace-nowrap grow mr-16 md:mr-0">
             Hello, <b>{userName}</b>
           </Link>
           <button
             onClick={() => signOut()}
-            className="bg-primary rounded-full text-white px-8 py-2"
-            style={{"@media (min-width: 640px)": { width: "24px", padding: "4px 8px" } }}
+            className="bg-primary rounded-full text-white p-2 md:px-8 md:py-2"
           >
             Logout
           </button>
@@ -27,13 +26,15 @@ function AuthOptions({ status, userName }) {
       )}
       {status === "unauthenticated" && (
         <>
-          <Link href="/login">Login</Link>
-          <Link
-            href="/register"
-            className="bg-primary rounded-full text-white px-8 py-2"
-          >
-            Register
-          </Link>
+          <div className="gap-4 flex items-center justify-center">
+            <Link href="/login" className="px-8 md:px-2">Login</Link>
+            <Link
+              href="/register"
+              className="bg-primary rounded-full text-white px-8 py-2"
+            >
+              Register
+            </Link>
+          </div>
         </>
       )}
     </>
@@ -54,6 +55,7 @@ export default function Header() {
   return (
     <>
       <header>
+        {console.log(session)}
         <div className="flex md:hidden justify-between">
           <Link className="text-primary font-semibold text-2xl" href={"/"}>
             PYYES
@@ -67,7 +69,12 @@ export default function Header() {
                 </span>
               </Link>
             )}
-            <button onClick={()=> {setNavOpen(!navOpen)}} className="p-1 border-none">
+            <button
+              onClick={() => {
+                setNavOpen(!navOpen);
+              }}
+              className="p-1 border-none"
+            >
               <Menu />
             </button>
           </div>

@@ -9,12 +9,18 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loginInProgress, setloginInProgress] = useState(false);
 
-    async function handleSubmitForm(ev){
-        ev.preventDefault();
-        setloginInProgress(true);
-        await signIn('credentials',{email,password, callbackUrl:'/'});
-        setloginInProgress(false);
+  async function handleSubmitForm(ev) {
+    ev.preventDefault();
+    setloginInProgress(true);
+
+    try {
+      await signIn("credentials", { email, password, callbackUrl: "/" });
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
     }
+
+    setloginInProgress(false);
+  }
 
   return (
     <section className="mt-8">
@@ -36,11 +42,19 @@ export default function LoginPage() {
           value={password}
           onChange={(ev) => setPassword(ev.target.value)}
         />
-        <button disabled={loginInProgress} type="submit" >Login</button>
+        <button disabled={loginInProgress} type="submit">
+          Login
+        </button>
         <div className="my-4 text-center text-gray-500">
           Or Login With Provider
         </div>
-        <button type="button" onClick={() =>{signIn('google', {callbackUrl:'/'})}} className="flex gap-4 justify-center">
+        <button
+          type="button"
+          onClick={() => {
+            signIn("google", { callbackUrl: "/" });
+          }}
+          className="flex gap-4 justify-center"
+        >
           <Image
             src={"/google.png"}
             alt={"Logo google"}
