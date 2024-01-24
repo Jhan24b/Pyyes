@@ -7,6 +7,7 @@ import SectionHeaders from "../components/layout/SectionHeaders";
 import AddressInputs from "@/app/components/layout/AddressInputs";
 import Delete from "@/app/components/icons/Delete";
 import CartProduct from "@/app/components/menu/CartProduct";
+import toast from "react-hot-toast";
 
 export default function CartPage() {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
