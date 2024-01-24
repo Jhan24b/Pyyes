@@ -32,7 +32,7 @@ export async function POST(req) {
     }
     if (cartProduct.extras?.length > 0) {
       for (const cartProductExtraThing of cartProduct.extras) {
-        const productExtras = productInfo.extraIngredientPrices;
+        const productExtras = productInfo.extraIngredients;
         const extraThingInfo = productExtras
           .find(extra => extra._id.toString() === cartProductExtraThing._id.toString());
         productPrice += extraThingInfo.price;
