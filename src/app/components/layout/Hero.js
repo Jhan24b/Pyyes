@@ -34,7 +34,7 @@ export default function Hero() {
           // objectFit="cover"
           alt="Pye"
           priority={true}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px" 
+          // sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px" 
         />
       </div>
     </section>

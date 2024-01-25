@@ -62,6 +62,7 @@ export default function MenuItem(menuItem) {
               <Image
                 src={image}
                 alt={name}
+                loading="eager" //remove si falla el test
                 width={300}
                 height={200}
                 className="mx-auto"
