@@ -34,7 +34,7 @@ export default function RegisterPage() {
         </div>
       )}
       <form className="block max-w-xs mx-auto">
-        <input
+        {/* <input
           type="email"
           placeholder="email"
           disabled={creatingUser}
@@ -50,9 +50,9 @@ export default function RegisterPage() {
         />
         <button type="submit" disabled={creatingUser}>
           Register
-        </button>
+        </button> */}
         <div className="my-4 text-center text-gray-500">
-          Or Register With Provider
+          With Provider
         </div>
         <button type="button" onClick={() =>{signIn('google', {callbackUrl:'/'})}} className="flex gap-4 justify-center">
           <Image
